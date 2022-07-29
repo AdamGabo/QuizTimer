@@ -17,8 +17,8 @@ A Javascript quiz.
 * JAVASCRIPT
 
 ## Website-Details
-* Please use the following link to navigate to the deployed website:https://adamgabo.github.io/Challenge-3/
-* GitHub Link: https://github.com/AdamGabo/Challenge-3
+* Please use the following link to navigate to the deployed website:https://adamgabo.github.io/QuizTimer/
+* GitHub Link: https://github.com/AdamGabo/QuizTimer
 * Webpage Preview: ![Alt text](./assets/images/Capture.PNG?raw=true "Webpage Preview")
 
 ## Maintainer
