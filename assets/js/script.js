@@ -1,7 +1,7 @@
-
+//Godspeed 
 var pageContentEl = document.querySelector("#page-content");
 var answerContentEl = document.querySelector("#answer-outcome");
-var list = document.querySelector("#answer-outcome");
+var list = document.querySelector("#scores-list");
 
 
 
@@ -21,12 +21,7 @@ var answerids =[];
 
 var timeleft = 60;
 
-
-
-var questionContent = document.getElementById("#question-text");
-var aList = document.getElementById("#answer-list");
-
-    
+//My sincere apologies...     
 
     var firstPrompt = function (){
  
@@ -79,7 +74,6 @@ var aList = document.getElementById("#answer-list");
         input.id = "input-username"; 
         pageContentEl.appendChild(input);
 
-        //set up local storage 
     }
     var ImplementHighscores = function (event){
         //read it from local storage 
@@ -101,17 +95,19 @@ var aList = document.getElementById("#answer-list");
     }
     var DiplayHighscores = function (){
 
-        var list = doucment.querySelector("scores-list"); 
         var localList = localStorage.getItem("Scores");
-        localList = JSON.parse(localList);
+        var ul = JSON.parse(localList);
 
-        var score = document.createElement("input");
-        input.setAttribute("type", "text");
-        input.id = "input-username"; 
-        pageContentEl.appendChild(input);
+        for (var i = 0; i < ul.length; i++)
+        {
+            var scoreLi = document.createElement("li");
+            scoreLi.textContent = ul[i].toString(); 
+            scoreLi.id = "input-score"; 
+            list.appendChild(input);
+        }
 
     }
-
+    //Timer Function
     var AddTimer = function () {
 
         
@@ -134,8 +130,6 @@ var aList = document.getElementById("#answer-list");
 
 
     }
-
-
     var QuestionEventHandler = function (event) {
         if (qCounter === 0)
             AddTimer(); 
@@ -474,6 +468,13 @@ var aList = document.getElementById("#answer-list");
             pageContentEl.removeChild(pageContentEl.lastChild);
         }
     }
+    var clearScores = function (event){
+        localStorage.clear();
+        
+        while (list.hasChildNodes()) {
+            list.removeChild(list.lastChild);
+        }
+    }
     function removeAnswerElements() {
 
         //this function simply gets rids of the elements that depict the anwser 
@@ -502,8 +503,23 @@ var aList = document.getElementById("#answer-list");
                 //item.remove();  
             //}    
     }
-
+if (pageContentEl)
 firstPrompt();
+
+//gets the party started 
 var btns = document.querySelector(".btn"); 
+if (btns)
 btns.addEventListener("click", QuestionEventHandler,true);
+
+//clears scores from local storage and from the ul list on the scores.html page 
+var cleared = document.querySelector("#score-button"); 
+if(cleared)
+cleared.addEventListener("click", clearScores,true);
+
+//to see scores look at local storage via the Inspect Panel 
+
+//something went array (pun intended), this function would look for when the user clicks the href link to go to the different webpage to display the highscores, however for a reason I cannot figure out the query Selector cannot get the click event. A better solution would have been implementing a button perhaps but I ran out of time. 
+var scorePage = document.querySelector("#scores-page"); 
+if(scorePage)
+scorePage.addEventListener("click", DiplayHighscores,true);
 
